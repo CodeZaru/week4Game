@@ -7,7 +7,7 @@ html, body {
 }
 
 body {
-/*	background-image: url("hangmanBackground.gif");*/
+	/*	background-image: url("hangmanBackground.gif");*/
 	background-color: #ffff;
 }
 
@@ -31,8 +31,9 @@ body {
 	background-image: url("blueBrickWall.gif");
 	background-color: #ffff;
 	
-
 }
+
+
 
 #scoreboard {
 	margin:auto;	
@@ -83,6 +84,8 @@ body {
 
 
 		#crystalGemHolder{
+			display:flex;
+			flex-wrap: wrap;
 			margin:auto;	
 			width:680px;
 			height:150px;
@@ -92,14 +95,24 @@ body {
 	}
 
 	#randomNumberHolder{
-		margin-top:130px;
-		margin-left:150px;
+		height:75px;
+		width:75px;
+		margin:auto;
+		padding: 25px 5px 5px 25px;
+		border: 1px solid #dddddd;
+/*		margin-top:130px;
+		margin-left:150px;*/
 		background-color: #fff;
 	}
 
-	#userNumberHolder{
-		margin-top:20px;
-		margin-left:150px;
+	#playerNumberHolder{
+		height:75px;
+		width:75px;
+		margin:auto;
+		padding: 25px 5px 5px 25px;
+		border: 1px solid #dddddd;
+/*		margin-top:130px;
+		margin-left:150px;*/
 		background-color: #fff;
 	}
 
@@ -121,7 +134,7 @@ body {
 			color:#0e0d0d;
 		}
 
-		.tile{
+/*		.tile{
 			height:50px;
 			width:50px;
 			float:left;
@@ -132,6 +145,38 @@ body {
 			color:#333;
 			padding-top:5px;
 		}
+		*/
+
+		.tile{
+			height:150px;
+			width:150px;
+			/*float:middle;*/
+			float:left;
+			/*margin:auto;*/
+			margin-right:10px;
+			background-color:white;
+			text-align:center;
+			font-size:24px;
+			color:#333;
+			padding-top:5px;
+		}
+
+	.cgImages {
+			height: 100px;
+			width: 100px;
+			border: solid 1px #272525;
+			margin-left: 10px
+		}
+
+
+		.crystalImage {
+			height: 100px;
+			width: 100px;
+			border: solid 1px #272525;
+			margin-left: 10px
+		}
+
+
 
 		#finalMessage{
 			text-align:center;
@@ -173,13 +218,18 @@ body {
 					width:98%;
 				}
 				.tile{
-					height:20px;
-					width:20px;
+					height:150px;
+					width:150px;
 					font-size:14px;
 				}
 			}
 
 			@media screen and (max-width:560px) {
+				.tile{
+					height:75px;
+					width:75px;
+					font-size:14px;
+				}
 				#wordHolder{
 					margin-top:10px;
 					margin-left:10px;
