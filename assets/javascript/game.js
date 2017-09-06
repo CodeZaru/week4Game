@@ -12,14 +12,11 @@ $(document).ready(function () {
 ////////////////////////////////////////////////////
 
 
-var wordBank=new Array;
-var wordArray=new Array;
-var previousGuesses=new Array;
-
 var numberOfCrystalGems=4;
 var crystalGemImages=['assets/images/greenGod.png','assets/images/heartGem.png','assets/images/monkeyGem.png','assets/images/unicornGem.png'];
 //var crystalGemImages=['apple','strawberry','blueberry','peach'];
-var randomNumber;
+//var randomNumber;
+//var targetNumber;
 var userNumber=88;
 var wrongAnswerCount;
 var counter = 0;
@@ -90,6 +87,8 @@ while(cgnumbers.length < 4){
 			}//the if above is like an otherwise
 //leave the loop when have 4 unique and random numbers between 1 and 12.
 
+
+
 console.log(cgnumbers);		
 var cgImages=[];
 
@@ -106,93 +105,31 @@ console.log(cgImages);
 
 
 
-//the getword function, defined on line 62, and then creates the approptiate number of tiles
-//this block also initiates the WAC count and the PG array. 			
-//getCrystalGems();
 
-//var numberOfTiles=numberOfCrystalGems;
-//console.log(numberOfTiles);
-
-
-//wrongAnswerCount=0;
-//previousGuesses=[];
-
-// Need to display wrongAnswerCount	as a score at top...
-
-
-//based onthe number of letters in the current word, this creates the appropriate number of tiles
-// in div wordHolder by appending new tile class divs (#t) It iterates through the collection,
-// concatenations div #t for each item in the loop per the i loop counter.
-/*
-for(i=0;i<cgImages.length;i++){
-
-	$('#crystalGemHolder').append('<div class="tile" id=t'+i+'></div>');
-	$('.t'+i+'').append(cgImages[i]);
-	console.log(cgImages[i]);
-
-
-};
-*/
-//appends random target number to its div	
-//$('#randomNumberHolder').append("test");
-		counter = 0;
-		$('#playerNumberHolder').text(counter);
+counter = 0;
+$('#playerNumberHolder').text(counter);
 
 function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
-		var targetNumber = getRandomInt(19,120);
+//var targetNumber = getRandomInt(19,120);
+targetNumber = getRandomInt(19,120);
 console.log(targetNumber);
 
-		$('#randomNumberHolder').text(targetNumber);
+$('#randomNumberHolder').text(targetNumber);
 
-	$('.crystalGemImage').on('click', function(){
-		    counter = counter + parseInt($(this).data('num'));
-		   console.log('num');
-		    $('#playerNumberHolder').text(counter);
-console.log(counter);
-//Victory
+$('.crystalGemImage').on('click', function(){
+	counter = counter + parseInt($(this).data('num'));
+	console.log('num');
+	$('#playerNumberHolder').text(counter);
+	console.log(counter);
+	checkAnswer();
+});
 
-		    if (counter == targetNumber){
-		      $('#status').text('Good Job!!!!');
-		      wins ++;
-		      $('#win').text(wins);
-		      console.log(wins)
-
-		      newGame();
-//defeat		        
-		    } else if ( counter > targetNumber){
-		        $('#status').text('You are not very smart!')
-		        losses ++;
-		        $('#loss').text(losses);
-		        console.log(losses)
-
-		        newGame();
-		    }
-		});
-
-}//gamescreen
+}
+//gamescreen
 ////////////////////////////////////////////////////
 //FUNCTION gameScreen() ENDS////////////////////////
-////////////////////////////////////////////////////
-
-
-
-/////////////////////////////////////////////////////
-//FUNCTION playGame() BEGINS//////////////
-/////////////////////////////////////////////////////
-function gamePlay() {
-
-
-
-	
-	}
-
-
-
-////////////////////////////////////////////////////
-//FUNCTION playGame() ENDS///////////////////////
 ////////////////////////////////////////////////////
 
 
@@ -200,19 +137,15 @@ function gamePlay() {
 //FUNCTION checkAnswer() BEGINS/////////////////////
 ////////////////////////////////////////////////////
 function checkAnswer(){
-//clear current answer variable
-var currentAnswer="";	
+	console.log(counter);
+	console.log(targetNumber);
+	if (counter == targetNumber){
+		victoryMessage();}
+		else if (counter > targetNumber){
+			defeatMessage();}
+		}
 
-for(i=0;i<currentWord.length;i++){
-//sets currentAnswer variable equal to the cumulative iteration of tiles set to text, which is basically
-//the current state of the currentWord-Answer...so the currentWordAnswer is built tile by tile.		
-currentAnswer+=($('#t'+i).text());
-}
-//tests whether the currentAnswer (built above) is equal to the currentWord yet, ot needs more iterations.			
-if(currentAnswer==currentWord){
-	victoryMessage();
-};
-}//STILL TO DO: checkanswer, add victory song/audio and victory picture, and increment points by 1.
+
 ////////////////////////////////////////////////////
 //FUNCTION checkAnswer() ENDS///////////////////////
 ////////////////////////////////////////////////////
@@ -222,20 +155,13 @@ if(currentAnswer==currentWord){
 //FUNCTION victoryMessage() BEGINS//////////////////
 ////////////////////////////////////////////////////
 function victoryMessage(){
-//The blur() method is used to remove focus from an element.	
-document.activeElement.blur();
-//As the .keyup() method is just a shorthand for .on( "keyup", handler ), 
-//detaching is possible using .off( "keyup" ).	
-$(document).off("keyup", handleKeyUp);
+	$('#status').text('Good Job!!!!');
+	wins ++;
+	$('#win').text(wins);
+	console.log(wins)
 
-//$('#feedback').append("LIFE SPARED!<br><br><div id='replay' class='button'>CONTINUE</div>");
-$('#feedback').append("LIFE SPARED!");
-wins ++;
-		    //  $("#win").html(wins);
-		    $('#win').text(wins);
-		    console.log(wins);
-		    setTimeout(function(){newGame();}, 3000)
-		    
+	newGame();
+
 
 }//victory
 ////////////////////////////////////////////////////
@@ -248,15 +174,13 @@ wins ++;
 ////////////////////////////////////////////////////
 //same code aas victoryMessage, except for defeat scenario		
 function defeatMessage(){
-	document.activeElement.blur();
-	$(document).off("keyup", handleKeyUp);
-//	$('#feedback').append("Hanged for stupidity!<br>(answer= "+ currentWord +")<div id='replay' class='button'>CONTINUE</div>");
-$('#feedback').append("Hanged for stupidity!<br>(answer= "+ currentWord +")");
+	$('#status').text('You are not very smart!')
+	losses ++;
+	$('#loss').text(losses);
+	console.log(losses)
 
-losses ++;
-$('#loss').text(losses);
-console.log(losses);
-setTimeout(function(){newGame();}, 3000)
+	newGame();
+
 
 }//defeat
 ////////////////////////////////////////////////////
@@ -276,7 +200,7 @@ function newGame(){
 
 ////////////////////////////////////////////////////
 ////////////////////////////////////////////////////
-//ACTUAL GAME CODE//////////////////////////////////
+//ACTUAL GAME CODE TO START GAME////////////////////
 ////////////////////////////////////////////////////
 ////////////////////////////////////////////////////
 
