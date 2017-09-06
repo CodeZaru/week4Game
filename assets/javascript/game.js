@@ -36,6 +36,9 @@ $('#loss').text(losses);
 function titleScreen(){
 	$('#gameContent').append('<div id="gameTitle">CRYSTAL GEM COLLECTOR</div><div id="startButton" class="button" background-color: red>BEGIN</div>');		
 	$('#startButton').on("click",function (){gameScreen()});
+	$('#gameContent').append('<div id="gamePlay"><p> Try to match the "Target Number" by clicking on the four crystals.</p><p> Each crystal adds a specific amount of points to your total score.</p><p> Match the "Target Number" and win the round, overshoot it and lose the round </p><p> Crystal values change each round.</p></div>');
+	
+
 }//display game
 ////////////////////////////////////////////////////
 //FUNCTION titleScreen() ENDS///////////////////////
@@ -49,9 +52,9 @@ function titleScreen(){
 function gameScreen(){
 
 	$('#gameContent').empty();
-	$('#gameContent').append('<div id="randomNumberHolder">Target Number:</div>');
-	$('#gameContent').append('<div id="playerNumberHolder">Player Number:</div>');
-	$('#gameContent').append('<div id="crystalGemHolder"></div>');
+	$('#gameContent').append('<div id="randomNumberContainer"><div id="randomNumberLabel">Target Number:</div><div id="randomNumberHolder"></div></div>');
+	$('#gameContent').append('<div id="playerNumberContainer"><div id="playerNumberLabel">Your Number:</div><div id="playerNumberHolder"></div></div>');
+	$('#gameContent').append('<div id="crystalGemContainer"><div id="crystalGemHolder"></div></div>');
 	$('#gameContent').append('<div id="feedback"></div>');
 	$('#gameContent').append('<form><input type="text" id="dummy" ></form>');
 
@@ -91,7 +94,8 @@ console.log(cgnumbers);
 var cgImages=[];
 
 for (i = 0; i < cgnumbers.length; i++) {
-	var cgImage = $('<img>');
+	//var cgImage = $('<img>');
+	var cgImage = $('<img id="cgImages">');
 	cgImage.attr('data-num', cgnumbers[i]);
 	cgImage.attr('src', crystalGemImages[i]);
 	cgImage.addClass('crystalGemImage');
@@ -151,7 +155,7 @@ console.log(counter);
 //Victory
 
 		    if (counter == targetNumber){
-		      $('#feedback').text('Good Job!!!!');
+		      $('#status').text('Good Job!!!!');
 		      wins ++;
 		      $('#win').text(wins);
 		      console.log(wins)
