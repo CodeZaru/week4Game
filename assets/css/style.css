@@ -138,6 +138,11 @@ padding: 3px;
 			margin-left: 10px
 		}
 
+#cgImages.crystalGemImage:hover {
+  background-color: yellow;
+
+}
+
 
 /*
 			#crystalGemImage {
