@@ -16,7 +16,7 @@ var numberOfCrystalGems=4;
 var crystalGemImages=['assets/images/greenGod.png','assets/images/heartGem.png','assets/images/monkeyGem.png','assets/images/unicornGem.png'];
 //var crystalGemImages=['apple','strawberry','blueberry','peach'];
 //var randomNumber;
-//var targetNumber;
+var targetNumber = 0;
 var userNumber=88;
 var wrongAnswerCount;
 var counter = 0;
