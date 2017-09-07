@@ -113,6 +113,14 @@ function getRandomInt(min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 //var targetNumber = getRandomInt(19,120);
+//NOTE that by declaring targetNumber here without 'var' and
+//by not declaring it at the top, javascript by default
+//treats it as a global variable, which was crucial in 
+//making it available to my checkAnswer function below.. will
+//need to see why this is the case because 'counter' was declared
+//at the top (globally) and didn't encounter problems..
+//maybe because 'counter' was set to zero and targetNumber wasn't
+//test that theory later...
 targetNumber = getRandomInt(19,120);
 console.log(targetNumber);
 
